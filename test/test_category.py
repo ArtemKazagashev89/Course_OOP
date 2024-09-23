@@ -1,5 +1,6 @@
-from src.product import Product
 from src.category import Category
+from src.product import Product
+
 
 def test_category_init(first_category, second_category):
     assert first_category.name == "Смартфоны"
@@ -16,12 +17,12 @@ def test_category_init(first_category, second_category):
 def test_add_product():
     """Тестируем добавление продукта в категорию."""
     category = Category("Смартфоны", "Смартфоны, как средство коммуникации")
-    product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+    product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
 
     category.add_product(product4)
 
     assert len(category.products) == 1
-    assert category.products[0].name == "55\" QLED 4K"
+    assert category.products[0].name == '55" QLED 4K'
 
 
 def test_products_list(sample_products):

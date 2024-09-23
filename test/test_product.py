@@ -1,11 +1,13 @@
-from src.product import Product
 import pytest
+
+from src.product import Product
+
+
 def test_product_init(product):
     assert product.name == "Samsung Galaxy S23 Ultra"
     assert product.description == "256GB, Серый цвет, 200MP камера"
     assert product.price == 180000.0
     assert product.quantity == 5
-
 
 
 def test_product_initialization():
@@ -39,12 +41,7 @@ def test_product_price_setter_zero():
 
 
 def test_product_new_product():
-    param_product = {
-        "name": "New Product",
-        "description": "New Description",
-        "price": 200.0,
-        "quantity": 5
-    }
+    param_product = {"name": "New Product", "description": "New Description", "price": 200.0, "quantity": 5}
     product = Product.new_product(param_product)
     assert product.name == "New Product"
     assert product.price == 200.0
