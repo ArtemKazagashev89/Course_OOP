@@ -15,7 +15,7 @@ class Product:
     def __str__(self):
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
-    def add(self, other):
+    def __add__(self, other):
         if isinstance(other, type(self)):
             return self.__price * self.quantity + other.__price * other.quantity
         else:
