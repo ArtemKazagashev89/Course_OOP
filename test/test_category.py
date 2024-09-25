@@ -1,5 +1,4 @@
-from src.category import Category
-from src.product import Product
+import pytest
 
 
 def test_category_init(first_category, second_category):
@@ -14,33 +13,21 @@ def test_category_init(first_category, second_category):
     assert second_category.category_count == 2
 
 
-def test_add_product():
-    """Тестируем добавление продукта в категорию."""
-    category = Category("Смартфоны", "Смартфоны, как средство коммуникации")
-    product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
-
-    category.add_product(product4)
-
-    assert len(category.products) == 1
-    assert category.products[0].name == '55" QLED 4K'
-
-
-def test_products_list(sample_products):
-    """Тестируем вывод списка продуктов."""
-    category = Category("Смартфоны", "Смартфоны, как средство коммуникации", sample_products)
-
-    expected_output = (
-        "Samsung Galaxy S23 Ultra, 180000.0. Остаток: 5\n"
-        "Iphone 15, 210000.0. Остаток: 8\n"
-        "Xiaomi Redmi Note 11, 31000.0. Остаток: 14\n"
+def test_category_products_property(data_for_counters_categories):
+    """Проверка корректности вывода строки"""
+    assert data_for_counters_categories.products == (
+        "Iphone 15, 210000.0 руб. Остаток: 8 шт.\nXiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
     )
 
-    assert category.products_list == expected_output
+
+def test_category_add_product(data_for_categories, new_product, data_for_err):
+    """Проверка добавления нового продукта в список"""
+    assert len(data_for_categories.products_in_list) == 1
+    data_for_categories.add_product(new_product)
+    assert len(data_for_categories.products_in_list) == 2
+    with pytest.raises(TypeError):
+        data_for_categories.add_product(data_for_err)
 
 
-def test_category_count(sample_products):
-    """Тестируем счетчик категорий."""
-    category1 = Category("Смартфоны", "Описание")
-    category2 = Category("Телевизоры", "Описание")
-
-    assert Category.category_count == 2
+def test_category_str(data_for_counters_categories):
+    assert str(data_for_counters_categories) == "Смартфоны, количество продуктов: 22 шт."
