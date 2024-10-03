@@ -40,7 +40,7 @@ def test_price_setter(capsys, monkeypatch):
     assert new_product.price == 200000
     new_product.price = 0
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    assert message.out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
     assert new_product.price == 200000
     monkeypatch.setattr("builtins.input", lambda _: "y")
     new_product.price = 100
