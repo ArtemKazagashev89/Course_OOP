@@ -33,6 +33,9 @@ def test_category_str(data_for_counters_categories):
     assert str(data_for_counters_categories) == "Смартфоны, количество продуктов: 22 шт."
 
 
-def test_middle_price(category1, product_invalid):
+def test_middle_price(category1):
     assert category1.middle_price() == 140333.33333333334
+
+
+def test_middle_price_empy(product_invalid):
     assert product_invalid.middle_price() == 0
