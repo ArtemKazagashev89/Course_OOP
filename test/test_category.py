@@ -35,6 +35,3 @@ def test_category_str(data_for_counters_categories):
 
 def test_middle_price(category1):
     assert category1.middle_price() == 140333.33333333334
-
-
-
