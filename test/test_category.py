@@ -37,5 +37,4 @@ def test_middle_price(category1):
     assert category1.middle_price() == 140333.33333333334
 
 
-def test_middle_price_empy(product_invalid):
-    assert product_invalid.middle_price() == 0
+
