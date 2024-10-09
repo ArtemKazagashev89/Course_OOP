@@ -31,3 +31,7 @@ def test_category_add_product(data_for_categories, new_product, data_for_err):
 
 def test_category_str(data_for_counters_categories):
     assert str(data_for_counters_categories) == "Смартфоны, количество продуктов: 22 шт."
+
+
+def test_middle_price(category1):
+    assert category1.middle_price() == 140333.33333333334

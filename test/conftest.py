@@ -2,7 +2,6 @@ import pytest
 
 from src.category import Category
 from src.lawngrass import LawnGrass
-from src.order import Order
 from src.product import Product
 from src.product_iteration import ProductIteration
 from src.smartphone import Smartphone
@@ -113,5 +112,14 @@ def grass_2():
 
 
 @pytest.fixture
-def order1():
-    return Order(Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5), 2)
+def product_invalid():
+    return Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+
+
+@pytest.fixture
+def category1():
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    category1 = Category("Смартфоны", "Категория смартфонов", [product1, product2, product3])
+    return category1
